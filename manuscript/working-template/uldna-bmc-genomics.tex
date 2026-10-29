@@ -118,7 +118,7 @@ Libraries from ULDNA were prepared following the Oxford Nanopore Technologies™
 The data generated from the MinKNOW™ software were uploaded into the analysis platform Epi2ME™ (v24.09-01). Data were filtered to have a min Q score $\geq 9$. After filtering, the reads were mapped to the published \textit{Crassostrea virginica} reference genome (NCBI assembly Bioproject PRJNA376014, GCA\_002022765.4 C\_virginica-3.0 \cite{gomez-chiarri_developing_2015}) and to the directly submitted \textit{C. virginica} genome (NCBI Genome assembly ASM5347728v1, CGA\_053477285.127) using the Epi2ME workflow wf-alignment. De novo assembly was carried out using hifiasm (v0.25.0-r726) \cite{cheng_haplotype-resolved_2021} and statistics of assembly was calculated by QUAST (v5.3.0) \cite{mikheenko_webquast_2023}. Comparison between de novo assembly and the reference genomes was visualized using D-GENIES \cite{cabanettes_d-genies_2018}. Reads that did not align with either reference genome were analyzed using kraken2 (v2.1.4) \cite{wood_improved_2019} and krona (v2.8.1) \cite{ondov_interactive_2011} to estimate taxonomy and visualize results, respectively.
 
 \section{Results}
-A total of 5 mL of haemolymph was extracted and pooled from 10 oysters yielding 2.67 x 105 cells mL\textsuperscript{-1}. Successful DNA extraction and ULDNA sequencing through the ONT PromethION™ flow cell generated 4.456 Gb, with 524.89 x 10\textsuperscript{3} reads, and an estimated N50 of 16.51 kb. Following selection of reads with Q score $\geq 9$, there remained 392.74 x 10\textsuperscript{3} reads available for further analysis. Alternatively, when aligning reads to the reference genomes, 94.6\% of reads were successfully mapped (21,280 of 371,461 reads were unmapped) (Table \ref{table:output}). Of the 5.4\% of reads that did not successfully map to the oyster genome, 55.8\% were bacteria, 33\% were eukaryote, 0.1\% were viruses, 0.1\% were archaea, 3\% arose from other roots, and 8\% had no hits (Figure 2, Supplemental Table 1). 
+A total of 5 mL of haemolymph was extracted and pooled from 10 oysters yielding 2.67 x 105 cells mL\textsuperscript{-1}. Successful DNA extraction and ULDNA sequencing through the ONT PromethION™ flow cell generated 4.456 Gb, with 524.89 x 10\textsuperscript{3} reads, and an estimated N50 of 16.51 kb. Following selection of reads with Q score $\geq 9$, there remained 392.74 x 10\textsuperscript{3} reads available for further analysis. Alternatively, when aligning reads to the reference genomes, 94.6\% of reads were successfully mapped (21,280 of 371,461 reads were unmapped) (Table \ref{table:output}, Figure \ref{fig:alignment}). Of the 5.4\% of reads that did not successfully map to the oyster genome, 55.8\% were bacteria, 33\% were eukaryote, 0.1\% were viruses, 0.1\% were archaea, 3\% arose from other roots, and 8\% had no hits  (Figre \ref{fig:krona}, Table \ref{table:taxonomy}).
 
 \begin{table}[ht]
 \caption{Output of a single PromethION\texttrademark{} sequencing run using eastern oyster, \textit{Crassostrea virginica}, ULDNA before and after quality control filtering and \textit{de novo} assembly in hifiasm.}\label{table:output}
@@ -139,6 +139,66 @@ Number of unmapped reads & NA & NA & 655 \\
 \botrule
 \end{tabular}
 \end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{manuscript/working-template/alignment.png}
+    \caption{Comparison between de novo assembly from ULDNA Nanopore sequences and two reference genomes showing the 10 chromosomes of \textit{Crassostrea virginica} (a) Gómez-Chiarri et al. 2015 reference and (b) Hoh et al. 2025 reference.}
+    \label{fig:alignment}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{manuscript/working-template/krona.png}
+    \caption{Unmapped reads (5.4\%) from ULDNA Nanopore sequences. Krona output of unmapped reads from ULDNA sequencing of \textit{C. virginica} haemocytes. Reads are shown to the species level where possible.}
+    \label{fig:krona}
+\end{figure}
+
+\begin{table}[ht]
+\caption{Top 10 taxonomic classes represented in unmapped reads generated from \textit{C. virginica} haemocyte ULDNA sequencing.}
+\label{table:taxonomy}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Class & No. of reads & \% of all unmapped reads \\
+\midrule
+Gammaproteobacteria & 8892 & 41.79 \\
+Mammalia & 6952 & 32.67 \\
+Bacilli & 413 & 1.94 \\
+Clostridia & 225 & 1.06 \\
+Flavobacteriia & 202 & 0.95 \\
+Actinomycetes & 167 & 0.78 \\
+Alphaproteobacteria & 82 & 0.39 \\
+Spirochaetia & 58 & 0.27 \\
+Epsilonproteobacteria & 49 & 0.23 \\
+Cyanophyceae & 44 & 0.21 \\
+\botrule
+\end{tabular}
+\end{table}
+
+\section{Discussion}
+At the time of this study, there were no mollusk-specific published reports that documented successful ULDNA extraction from mollusks with downstream demonstration of ultra-long reads or a mollusk genome assembly from UHMW DNA. The study of \cite{dotto-maurel_evaluation_2025} found traditional HMW DNA extraction kits were suitable for successful extraction of OSHV1 (a herpes virus of ostreid oysters), but our attempts to obtain eastern oyster ULDNA using each of the recommended kits yielded no ULDNA. Modification \cite{brown_population_1989} provided quantities of high molecular weight DNA that appeared to be sufficient for Nanopore library preparation and ULDNA sequencing. However, the read lengths obtained from the oyster ULDNA preparation (N50 16kb) were shorter than the expected N50 length (50-100kb) and the number of ULDNA contigs obtained (105) fell considerably below the expected range from a PromethION flow cell of 2,500-4,500 contigs. Lower contig numbers most likely reflected that a portion of the fragments were considerably shorter than the optimal $>$ 50kb in length. This implies that pulsed-field gel electrophoresis (PFGE) would be more appropriate for the DNA integrity checking step and if necessary, the highest molecular weight DNA would be excised and extracted from the gel. Alternatively, library preparation for this type of DNA may need to be further modified from the recommended protocol. Nevertheless, sufficient ULDNA was generated to successfully assemble 91.4\% of the \textit{C. virginica} genome.
+
+Aside from the lower output than expected, some other aspects of this study produced unexpected results, which requires some explanation for discrepancies. Although the majority of generated reads successfully mapped to the eastern oyster reference genomes, de novo assembly proved challenging, with only 57.6\% of the de novo assembly matching the published eastern oyster reference genomes (Table \ref{table:output}, Figure \ref{fig:alignment}). A likely explanation for this discrepancy is the extensive genome-wide duplications and repetitive regions within the eastern oyster genome \cite{kamalay_dna_1976, modak_extensive_2021}. Repetitive regions in the eastern oyster genome are estimated to be about 35-54\% of the total genome. These repetitive regions prove challenging for \textit{de novo} genome assembly \cite{liao_current_2019}, which could account for the dissimilarity between the established reference genomes and the de novo one generated in this study. Additionally, in extensively repetitive regions, reads often are misassembled, leading to gaps in coverage \cite{treangen_repetitive_2012, wang_read_2019}. To address these concerns in future studies, alternative assemblies that address extensive repetitive regions should be considered in the pipeline, such as RepAHR \cite{liao_current_2019}.
+
+Very minimal non-oyster DNA (~5\% of reads did not map to the eastern oyster reference genomes) was found within the ultra-long samples, demonstrating utility of haemocytes for this protocol. Oyster haemolymph has been shown to host a variety of bacteria, protists, and viruses \cite{dupont_oyster_2020}. When analyzing the unmapped reads to determine species classification, several interesting identifications became present. \textit{Francisella halioticida}, comprised 19\% of the non-oyster reads. This pathogen, causing macroscopic lesions in several bivalves species including blue mussels \cite{bouras_influence_2024, cano_first_2022}, scallops \cite{kawahara_parallel_2019, kawahara_four-year_2024}, and abalone \cite{brevik_francisella_2011, kamaishi_mass_2010}, has not been identified previously in oysters from Great Bay Estuary. \textit{Photobacterium leiognathi subsp. mandapamensis} is a gram-negative bacterium in the same family as \textit{Vibrio parahaemolyticus}, comprised 6\% of non-oyster reads. This pathogen is known to exist in Great Bay Estuary eastern oysters \cite{hartwick_forecasting_2019}. In addition to numerous bacteria found, \textit{Homo sapiens} DNA accounted for 33\% of unmapped reads. It has been well-documented that untreated or partially treated sewage makes its way into Lamprey River either from faulty septic systems or by direct discharge, feeding directly into GBE \cite{piscataqua_region_estuaries_partnership_state_2023}. Given that oysters have an open circulatory system and the location near the mouth Lamprey River where the oysters were sampled, it is reasonable to suspect that untreated wastewater could have contributed to the sewage-related bacterial and human reads that were identified in the unmapped read set.
+
+\section{Conclusions}
+Continued advancement of genomic techniques is becoming increasingly important for in-depth studies of both economically and environmentally important marine organisms, such as the eastern oyster. However, as -omics techniques continually advance, methodologies optimized for “difficult” marine organisms, such as mollusks, struggle to keep pace. This study resulted from the need to optimize ULDNA extraction methods from eastern oysters to use with the Oxford Nanopore Technologies ULNA sequencing kit. The results from this sequencing analysis show that although standard ultra-long estimations developed by ONT were not reached, many ultra-long reads were generated and used throughout downstream analyses. Combining ultra-long scaffolds with the existing eastern oyster reference genomes could provide telomere-to-telomere assembly of the eastern oyster genome. This would expose hard-to-reach areas, such as repetitive regions and heterochromatic regions, allowing for the expansion of future studies of the eastern oyster genome.
+
+\bmhead{Acknowledgements}
+Thanks are due to members of the Brown Ecological Genetics Lab for assistance with field tasks: Kelsey Meyer, Taja Sims-Harper, and Grant Milne, and various undergraduates. David Shay helped with vessels for sample collection. Ray Grizzle, Robert Atwood, Brianna Group, Kelley Thomas, and Elizabeth Harvey provided logistical and experimental design advice.
+
+\section*{Declarations}
+\bmhead{Author Contributions}
+Conceptualization, A.S., M.J., and B.B.; methodology, A.S., K.A., M.J. and B.B.; software, A.S.; formal analysis, A.S. and B-Y.L.; investigation, A.S., C.G., and K.A.; resources, B.B.; data curation, A.S. and B-Y. L.; writing—original draft preparation, A.S.; writing—review and editing, B.B., B-Y.L. C.G., K.A. and M.J.; visualization, A.S. and B-Y.L.; supervision, B.B.; project administration, B.B.; funding acquisition, B.B. All authors have read and agreed to the published version of the manuscript.
+\bmhead{Funding}
+Partial funding for this research was provided by the New Hampshire Agricultural Experiment Station [scientific contribution number TBD], supported by the USDA National Institute of Food and Agriculture Hatch Project Numbers 7004018 and 7005577 and the state of New Hampshire awarded to B.B.. Partial funding also was provided by Richmond-Durham Enterprises, LLC to B.B.. Partial funding also was provided via a New Hampshire Sea Grant Graduate Fellowship awarded to A.S.
+\bmhead{Data Availability}
+Sequence data for mapped and unmapped reads were accessed to NCBI TBD. 
+\bmhead{Code Availability}
+Analyses can be found at https://github.com/astrickland4/oyster-uldna.
+\bmhead{Conflicts of Interest}
+The authors declare no conflicts of interest.
 
 \bibliography{oyster-uldna}
 
