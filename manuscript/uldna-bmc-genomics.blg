@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: uldna-bmc-genomics.aux
+The style file: sn-basic.bst
+Database file #1: oyster-uldna.bib
+Warning--I didn't find a database entry for "bricker_role_2018"
+Warning--I didn't find a database entry for "dotto-maurel_evaluation_2025"
+sn-basic.bst [2024/07/19 v1.1 bibliography style]
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--there's a number but no volume in gong_ultra-long_2019
+Warning--missing institution in piscataqua_region_estuaries_partnership_state_2023
+You've used 68 entries,
+            3567 wiz_defined-function locations,
+            1239 strings with 28727 characters,
+and the built_in function-call counts, 63684 in all, are:
+= -- 5978
+> -- 3089
+< -- 21
++ -- 1165
+- -- 935
+* -- 5914
+:= -- 9341
+add.period$ -- 125
+call.type$ -- 68
+change.case$ -- 703
+chr.to.int$ -- 68
+cite$ -- 70
+duplicate$ -- 4424
+empty$ -- 4778
+format.name$ -- 1158
+if$ -- 13171
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 514
+newline$ -- 213
+num.names$ -- 274
+pop$ -- 1521
+preamble$ -- 1
+purify$ -- 629
+quote$ -- 0
+skip$ -- 1418
+stack$ -- 0
+substring$ -- 4904
+swap$ -- 1348
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 612
+warning$ -- 2
+while$ -- 361
+width$ -- 0
+write$ -- 874
+(There were 4 warnings)
